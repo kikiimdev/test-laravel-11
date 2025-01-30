@@ -1,7 +1,7 @@
 [phases.postbuild]
 cmds = [
-    "php /app/artisan optimize:clear",
-    "php /app/artisan storage:link",
+    # "php /app/artisan optimize:clear",
+    # "php /app/artisan storage:link",
 ]
 dependsOn = ["build"]
 
