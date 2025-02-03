@@ -54,6 +54,7 @@ http {
         #     try_files $uri $uri/ ${NIXPACKS_PHP_FALLBACK_PATH}?$query_string;
         #   }
         # ) else ()
+        #
 
         location = /favicon.ico { access_log off; log_not_found off; }
         location = /robots.txt  { access_log off; log_not_found off; }
