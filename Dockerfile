@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:1.1-builder-php8.2.16
+FROM dunglas/frankenphp:1.8-builder-php8.2.16
 
 # Set Caddy server name to "http://" to serve on 80 and not 443
 # Read more: https://frankenphp.dev/docs/config/#environment-variables
