@@ -27,7 +27,7 @@ COPY composer.json composer.lock ./
 # --no-dev: Excludes dev dependencies (crucial for production)
 # --optimize-autoloader: Optimizes Composer's autoloader for faster execution
 # --no-interaction: Prevents Composer from asking questions
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev
 
 # Copy the rest of the application code
 # This is done after composer install to maximize caching benefit
