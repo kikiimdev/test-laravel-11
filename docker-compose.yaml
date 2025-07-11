@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - ${APP_PORT:-8000}:8000
+      - ${VITE_PORT:-5173}:${VITE_PORT:-5173}
+    volumes:
+      - ./:${WORKDIR}
+      - ./vendor/:${WORKDIR}/vendor
