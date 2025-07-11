@@ -83,8 +83,8 @@ COPY --from=builder /app/vendor /var/www/html/vendor
 COPY --from=builder /app/public /var/www/html/public
 COPY --from=builder /app/bootstrap/cache /var/www/html/bootstrap/cache
 COPY --from=builder /app/storage /var/www/html/storage
-COPY --from=builder /app/.env.example /var/www/html/.env.example # Copy .env.example, .env will be mounted
-COPY --from=builder /app/.env /var/www/html/.env # If you want to bake a default .env, otherwise use mount
+# COPY --from=builder /app/.env.example /var/www/html/.env.example # Copy .env.example, .env will be mounted
+# COPY --from=builder /app/.env /var/www/html/.env # If you want to bake a default .env, otherwise use mount
 
 # Copy the remaining essential application files
 # Exclude files that are not needed in production (e.g., tests, dev config)
