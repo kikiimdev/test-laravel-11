@@ -9,3 +9,8 @@ services:
     volumes:
       - ./:${WORKDIR}
       - ./vendor/:${WORKDIR}/vendor
+    networks:
+      - lara11-beta
+networks:
+  lara11-beta:
+    driver: bridge
