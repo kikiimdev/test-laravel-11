@@ -43,7 +43,7 @@ COPY composer.json composer.lock ./
 
 # Install Laravel dependencies. Use --no-dev for production builds.
 # Use --optimize-autoloader and --no-interaction for production.
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-progress
+RUN composer install --no-dev
 
 # --- Production Stage ---
 # Use a smaller base image for the final production image.
