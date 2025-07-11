@@ -1,35 +1,17 @@
-FROM dunglas/frankenphp:1.8.0-builder-php8.2-bookworm
+FROM dunglas/frankenphp
 
-# Set Caddy server name to "http://" to serve on 80 and not 443
-# Read more: https://frankenphp.dev/docs/config/#environment-variables
-ENV SERVER_NAME="http://"
+# Be sure to replace "your-domain-name.example.com" by your domain name
+ENV SERVER_NAME=$APP_URL
+# If you want to disable HTTPS, use this value instead:
+#ENV SERVER_NAME=:80
 
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    git \
-    unzip \
-    librabbitmq-dev \
-    libpq-dev \
-    supervisor
+WORKDIR /app
 
-RUN install-php-extensions \
-    gd \
-    pcntl \
-    opcache \
-    pdo \
-    pdo_mysql \
-    redis
-
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html
-
-# Copy the Laravel application files into the container.
+# If you use Symfony or Laravel, you need to copy the whole project instead:
 COPY . .
 
-# Start with base PHP config, then add extensions.
+# Enable PHP production settings
 COPY ./php.ini /usr/local/etc/php/
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install PHP extensions
 RUN pecl install xdebug
@@ -42,8 +24,3 @@ RUN docker-php-ext-enable xdebug
 
 # Set permissions for Laravel.
 RUN chown -R www-data:www-data storage bootstrap/cache
-
-EXPOSE 80 443
-
-# Start Supervisor.
-CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisor/conf.d/supervisord.conf"]
